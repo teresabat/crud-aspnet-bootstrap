@@ -1,0 +1,43 @@
+@model IEnumerable<crud_dotnet.Models.Car>
+
+@{
+ViewData["Title"] = "Car List";
+}
+<style>
+  table{
+    text-align: center;
+  }
+</style>
+
+<div class="container mt-4">
+    <h2>Car List</h2>
+
+    <p>
+        <a class="btn btn-primary" href="@Url.Action("Create")">Criar novo</a>
+    </p>
+
+    <table class="table table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var car in Model)
+        {
+        <tr>
+            <td>@car.Id</td>
+            <td>@car.Name</td>
+            <td>@car.email</td>
+            <td>
+                <a class="btn btn-warning btn-sm" href="@Url.Action("Edit", new { id = car.Id })">Editar</a>
+                <a class="btn btn-danger btn-sm" href="@Url.Action("Delete", new { id = car.Id })" onclick="return confirm('Tem certeza que deseja excluir?');">Excluir</a>
+            </td>
+        </tr>
+        }
+        </tbody>
+    </table>
+</div>
